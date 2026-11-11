@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out source and submodules
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event_name == 'release' && github.event.release.tag_name || github.sha }}
           submodules: recursive
@@ -33,7 +33,7 @@ jobs:
         uses: Jimver/cuda-toolkit@b8bf9c6c28f8a92fbb04dcfcaee872e60c57462d # v0.2.36
         with:
           cuda: '13.2.0'
-          subpackages: '["nvcc"]'
+          sub-packages: '["nvcc"]'
 
       - name: Verify CUDA compiler
         run: nvcc --version
@@ -50,7 +50,7 @@ jobs:
         run: apptainer test dummest.sif
 
       - name: Upload image artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dummest-apptainer
           path: dummest.sif
@@ -65,7 +65,7 @@ jobs:
       contents: write
     steps:
       - name: Download image artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: dummest-apptainer
 
