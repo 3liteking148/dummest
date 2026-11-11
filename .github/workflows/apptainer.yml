@@ -33,7 +33,6 @@ jobs:
         uses: Jimver/cuda-toolkit@b8bf9c6c28f8a92fbb04dcfcaee872e60c57462d # v0.2.36
         with:
           cuda: '13.2.0'
-          sub-packages: '["nvcc"]'
 
       - name: Verify CUDA compiler
         run: nvcc --version
